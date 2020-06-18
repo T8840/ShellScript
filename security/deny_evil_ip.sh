@@ -5,7 +5,7 @@
 # 如下为截取secure文件恶意ip远程登录22端口，大于等于4次就写入防火墙黑名单
 # egrep -o "([0-9]{1,3}\.){3}[0-9]{1,3}" 匹配ip
 # sort -nr | uniq -c 对ip排序，并在开头加上该ip出现的次数
-IP_ADDR=`tail -n 1000 /var/log/secure  | grep "Failed password" | egrep -o "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort -nr | uniq -c | awk '$1>=4 {print $2}'`
+IP_ADDR=`tail -n 1000 /var/log/secure  | grep "Failed password" | egrep -o "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort -nr | uniq -c | awk '$1>=3 {print $2}'`
 echo 
 cat <<EOF
 +++++++++welcome to use ssh login drop failed ip+++++++++
